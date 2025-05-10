@@ -1,0 +1,12 @@
+import { Injectable } from '@angular/core';
+import { Observable, of, map } from 'rxjs';
+import { <%= propertyName %>Adapter } from './adapters/<%= fileName %>.adapter';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class <%= className %>Facade {
+  get(): Observable<{ name: string }> {
+    return of({ name: '<%= className %>' }).pipe(map(<%= propertyName %>Adapter));
+  }
+}

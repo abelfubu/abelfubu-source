@@ -1,0 +1,17 @@
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { <%= className %>Store } from './<%= fileName %>.store';
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [],
+  providers: [<%= className %>Store],
+  selector: '<%= prefix %>-<%= fileName %>',
+  template: `<h1>{{ store.name() }} works!!</h1>`,
+})
+export class <%= className %>Component implements OnInit {
+  protected readonly store = inject(<%= className %>Store);
+
+  ngOnInit(): void {
+    this.store.initialize();
+  }
+}

@@ -1,0 +1,36 @@
+import { signal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { <%= className %>Component } from './<%= fileName %>.component';
+import { <%= className %>Store } from './<%= fileName %>.store';
+
+describe(<%= className %>Component.name, () => {
+  const StoreMock = {
+    initialize: jest.fn(),
+    name: signal('<%= className %>'),
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [<%= className %>Component],
+      providers: [
+        {
+          provide: <%= className %>Store,
+          useValue: StoreMock,
+        },
+      ],
+    }).compileComponents();
+  });
+
+  function setup() {
+    const fixture = TestBed.createComponent(<%= className %>Component);
+    fixture.detectChanges();
+
+    return { fixture };
+  }
+
+  it('should initialize store', () => {
+    setup();
+
+    expect(StoreMock.initialize).toHaveBeenCalled();
+  });
+});

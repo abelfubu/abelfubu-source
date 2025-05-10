@@ -1,0 +1,26 @@
+import { Injectable, computed, inject, signal } from '@angular/core'
+
+import { <%= className %>Facade } from './<%= fileName %>.facade';
+
+interface <%= className %>State {
+  name: string;
+};
+
+const defaultState: <%= className %>State = {
+  name: '',
+};
+
+@Injectable({
+  providedIn: 'root',
+})
+export class <%= className %>Store { 
+  private readonly facade = inject(<%= className %>Facade);
+
+  private readonly state = signal<<%= className %>State>(defaultState);
+
+  readonly name = computed(() => this.state().name);
+
+  initialize(): void {
+    this.facade.get().subscribe(({ name }) => this.state.set({ name }));
+  }
+}

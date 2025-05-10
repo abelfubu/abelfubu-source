@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "Feature",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the feature",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Prefix to use for the feature",
+      "x-prompt": "What prefix would you like to use?"
+    }
+  },
+  "required": ["name", "prefix"]
+}

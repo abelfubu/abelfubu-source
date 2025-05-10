@@ -1,0 +1,13 @@
+{
+  "name": "@abelfubu/schematics",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@nx/devkit": "21.0.3",
+    "tslib": "^2.3.0"
+  },
+  "generators": "./generators.json",
+  "schematics": "./generators.json"
+}

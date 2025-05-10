@@ -1,0 +1,26 @@
+{
+  "generators": {
+    "feature": {
+      "factory": "./src/feature/feature",
+      "schema": "./src/feature/schema.json",
+      "description": "Feature generator"
+    },
+    "ng-add": {
+      "factory": "./src/ng-add/index",
+      "schema": "./src/ng-add/schema.json",
+      "description": "Abelfubuize your project"
+    }
+  },
+  "schematics": {
+    "feature": {
+      "factory": "./src/feature/compat",
+      "schema": "./src/feature/schema.json",
+      "description": "Feature generator"
+    },
+    "ng-add": {
+      "factory": "./src/ng-add/compat",
+      "schema": "./src/ng-add/schema.json",
+      "description": "Abelfubuize your project"
+    }
+  }
+}

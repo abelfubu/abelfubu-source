@@ -1,0 +1,8 @@
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./<%= fileName %>.component').then(m => m.<%= className %>Component),
+  }
+]

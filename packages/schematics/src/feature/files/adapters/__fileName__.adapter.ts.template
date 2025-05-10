@@ -1,0 +1,3 @@
+export function <%= propertyName %>Adapter(source: { name: string}): { name: string } {
+  return source;
+}
