@@ -25,22 +25,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --registry=https://registry.npmjs.org/
 
       - name: Build library
         run: npx nx build schematics --prod --skip-nx-cache
-
-      # Explicitly ensure npm registry is set to official npm registry
-      - name: Configure npm registry
-        run: |
-          npm config set registry https://registry.npmjs.org/
-          echo "Current registry: $(npm config get registry)"
-
-      # Create .npmrc file with auth token for publishing
-      - name: Create .npmrc file
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          echo "registry=https://registry.npmjs.org/" >> .npmrc
 
       - name: Release
         env:
@@ -48,9 +36,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          cd dist/libs/YOUR_LIB_NAME
-          echo "Creating package-specific .npmrc"
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          echo "registry=https://registry.npmjs.org/" >> .npmrc
-          echo "Publishing with explicit registry"
+          cd dist/packages/schematics
           npx semantic-release --debug
