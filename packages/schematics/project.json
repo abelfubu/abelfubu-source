@@ -44,6 +44,14 @@
         ]
       }
     },
+    "release": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx semantic-release",
+        "cwd": "dist/packages/schematics"
+      },
+      "dependsOn": ["build"]
+    },
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"
