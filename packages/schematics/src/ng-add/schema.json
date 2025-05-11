@@ -13,5 +13,5 @@
       "description": "Add Prettier to your project"
     }
   },
-  "required": ["tailwind"]
+  "required": []
 }

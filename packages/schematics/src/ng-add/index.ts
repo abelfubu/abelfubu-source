@@ -11,20 +11,23 @@ import { AddOptionsSchema } from './schema';
 export async function addGenerator(tree: Tree, options: AddOptionsSchema) {
   const tasks = [];
 
-  // 1. Add Prettier
-  tasks.push(addDependenciesToPackageJson(tree, {}, withPackages('prettier')));
-
-  if (!tree.exists('.prettierrc')) {
-    tree.write(
-      '.prettierrc',
-      JSON.stringify(
-        {
-          semi: false,
-        },
-        null,
-        2
-      )
+  if (options.prettier) {
+    tasks.push(
+      addDependenciesToPackageJson(tree, {}, withPackages('prettier'))
     );
+
+    if (!tree.exists('.prettierrc')) {
+      tree.write(
+        '.prettierrc',
+        JSON.stringify(
+          {
+            semi: false,
+          },
+          null,
+          2
+        )
+      );
+    }
   }
 
   if (options.tailwind) {
@@ -48,9 +51,10 @@ export async function addGenerator(tree: Tree, options: AddOptionsSchema) {
     tree.write('src/styles.css', `@import "tailwindcss";`);
   }
 
-  await formatFiles(tree);
-
-  return runTasksInSerial(...tasks, () => installPackagesTask(tree));
+  return runTasksInSerial(...tasks, async () => {
+    await formatFiles(tree);
+    installPackagesTask(tree);
+  });
 }
 
 export default addGenerator;
