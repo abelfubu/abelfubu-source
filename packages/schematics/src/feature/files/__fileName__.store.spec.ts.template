@@ -9,7 +9,9 @@ describe(<%= className %>Store.name, () => {
     get: jest.fn(),
   };
 
-  beforeEach(() => {
+  afterEach(() => jest.clearAllMocks());
+
+  function setup() {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -18,14 +20,10 @@ describe(<%= className %>Store.name, () => {
         },
       ],
     });
-  });
 
-  afterEach(() => jest.clearAllMocks());
-
-  function setup() {
-    const store = TestBed.inject(<%= className %>Store);
-
-    return { store };
+    return { 
+      store: TestBed.inject(<%= className %>Store) 
+    };
   }
 
   it('should initialize', () => {

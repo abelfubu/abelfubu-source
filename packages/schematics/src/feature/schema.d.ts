@@ -1,4 +1,4 @@
 export interface FeatureGeneratorSchema {
-  name: string;
+  path: string;
   prefix: string;
 }

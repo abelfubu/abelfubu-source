@@ -1,18 +1,18 @@
 import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
-import * as path from 'path';
+import { join } from 'node:path';
 import { FeatureGeneratorSchema } from './schema';
 
 export async function featureGenerator(
   tree: Tree,
   options: FeatureGeneratorSchema
 ) {
-  const projectRoot = `src/${options.name}`;
+  const path = options.path.replace(/\\/g, '/');
 
   const { className, fileName, propertyName } = names(
-    options.name.split('/').pop()
+    path.split('/').pop() || path
   );
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+  generateFiles(tree, join(__dirname, 'files'), path, {
     fileName,
     className,
     propertyName,

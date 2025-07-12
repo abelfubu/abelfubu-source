@@ -3,10 +3,11 @@ import { <%= className %>Store } from './<%= fileName %>.store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'flex bg-gray-100 min-h-screen items-center justify-center' },
   imports: [],
   providers: [<%= className %>Store],
   selector: '<%= prefix %>-<%= fileName %>',
-  template: `<h1>{{ store.name() }} works!!</h1>`,
+  template: `<h1 class="text-7xl">{{ store.name() }} works!!</h1>`,
 })
 export class <%= className %>Component implements OnInit {
   protected readonly store = inject(<%= className %>Store);

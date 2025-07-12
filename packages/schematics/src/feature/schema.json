@@ -4,14 +4,15 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
+    "path": {
       "type": "string",
-      "description": "Name of the feature",
+      "description": "Path to the feature to be generated starting from the root of the workspace",
+      "examples": ["app/features/feature-name", "libs/feature-name"],
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "Path to the feature to be generated starting from the root of the workspace"
     },
     "prefix": {
       "type": "string",
@@ -19,5 +20,5 @@
       "x-prompt": "What prefix would you like to use?"
     }
   },
-  "required": ["name", "prefix"]
+  "required": ["path", "prefix"]
 }

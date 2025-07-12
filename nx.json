@@ -74,8 +74,7 @@
   },
   "release": {
     "version": {
-      "preVersionCommand": "npx nx run-many -t build",
-      "conventionalCommits": true
+      "preVersionCommand": "npx nx run-many -t build"
     },
     "changelog": {
       "workspaceChangelog": {

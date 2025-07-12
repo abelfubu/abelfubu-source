@@ -11,6 +11,10 @@
     "prettier": {
       "type": "boolean",
       "description": "Add Prettier to your project"
+    },
+    "primeng": {
+      "type": "boolean",
+      "description": "Add PrimeNG to your project"
     }
   },
   "required": []

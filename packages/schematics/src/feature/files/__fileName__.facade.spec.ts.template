@@ -1,0 +1,24 @@
+import { TestBed } from '@angular/core/testing';
+
+import { <%= className %>Facade } from './<%= fileName %>.facade';
+
+describe(<%= className %>Facade.name, () => {
+  afterEach(() => jest.clearAllMocks());
+
+  function setup() {
+    TestBed.configureTestingModule({});
+
+    return {
+      facade: TestBed.inject(<%= className %>Facade),
+    }
+  }
+
+  it('should get', (done) => {
+    const { facade } = setup();
+
+    facade.get().subscribe((vale) => {
+      expect(vale.name).toBe('<%= className %>');
+      done();
+    });
+  });
+});
